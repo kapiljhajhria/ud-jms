@@ -11,6 +11,7 @@ import org.springframework.jms.support.converter.MessageType;
 public class JmsConfig {
 
     public static final String MY_QUEUE = "hello-world-queue";
+    public static final String MY_SEND_RCV_QUEUE = "reply-back-queue";
 
     @Bean
     public MessageConverter messageConverter() {
