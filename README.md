@@ -15,3 +15,7 @@ Visit http://localhost:8161/ to see the ActiveMQ-artemis console.
 check the web console using the default username and password of artemis / simetraehcapa.
 
 To read documentation visit the project it was forked from [HERE](https://github.com/vromero/activemq-artemis-docker)
+
+## JMS Types
+
+- try using springframework objects or classes to send and receive messages, so that its easier to switch to any other implementation of JMS.

@@ -30,16 +30,15 @@ public class HelloMessageListener {
     }
 
     @JmsListener(destination = JmsConfig.MY_SEND_RCV_QUEUE)
-    public void listenForHello(@Payload HelloWorldMessage helloWorldMessage, @Headers MessageHeaders headers, Message message) {
+    public void listenForHello(@Payload HelloWorldMessage helloWorldMessage, @Headers MessageHeaders headers, Message jmsMessage, org.springframework.messaging.Message springMessage) {
 //        @Payload annotation will tell spring boot to deserialize the object
 //        @Headers annotation will tell spring boot to fetch the headers from the message
-//
-        HelloWorldMessage replyMessage=  HelloWorldMessage.builder()
+
+        // springMessage param added to check the difference between springMessage and jmsMessage using debugger.
+        HelloWorldMessage payloadMessage=  HelloWorldMessage.builder()
                 .message("World---- ")
                 .id(UUID.randomUUID())
                 .build();
-        jmsTemplate.convertAndSend((Destination) message.getHeaders().get("jms_replyTo"), replyMessage);
-        System.out.println("Received message: ");
-        System.out.println(helloWorldMessage);
+        jmsTemplate.convertAndSend((Destination) jmsMessage.getHeaders().get("jms_replyTo"), payloadMessage);
     }
 }
